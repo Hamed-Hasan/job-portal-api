@@ -12,3 +12,9 @@ exports.getJobsServiceById = async (jobId) => {
     const jobs = await Jobs.findOne({_id: jobId});
     return jobs
 }
+exports.updateJobsService = async (id, data) => {
+    const jobs = await Jobs.updateOne({_id: id}, data, {
+        runValidators: true
+    });
+    return jobs
+}

@@ -1,4 +1,4 @@
-const { createJobsService, getJobsService, getJobsServiceById } = require("../services/jobs.service")
+const { createJobsService, getJobsService, getJobsServiceById, updateJobsService } = require("../services/jobs.service")
 
 exports.createJob = async (req, res, next) => {
 
@@ -61,7 +61,7 @@ exports.getJobById = async (req, res, next) => {
 exports.updateJob = async (req, res, next) => {
     const {id} = req.params;
     try {
-        const jobs = await getJobsServiceById(id)
+        const jobs = await updateJobsService(id, req.body)
         // if(!jobs) {
         //     res.status(400).json({
         //         status:"fail",
