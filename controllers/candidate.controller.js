@@ -3,8 +3,34 @@ const { applyJob, getCandidateByIdService, getAllCandidateByService } = require(
 
 exports.getJobsCandidate = async (req, res, next) => {
 
+    
+
     try {
-        const allCandidate = await getAllCandidateByService();
+        let filters = { ...req.query }
+        //solt,page,limit, --- exclude
+        const excludeField = ['sort', 'page', 'limit']
+        excludeField.forEach(field => delete filters[field])
+    
+        //gt,li,get,lte
+        let filterString = JSON.stringify(filters)
+        filterString = filterString.replace(/\b(gt|gte|lt|Lte)\b/g, match => `$${match}`)
+    
+        filters = JSON.parse(filterString)
+        console.log(JSON.parse(filterString))
+    
+    
+        const queries = {}
+        if (req.query.sort) {
+          const sortBy = req.query.sort.split(',').join(' ')
+          queries.sortBy = sortBy
+        }
+        //
+        if (req.query.fields) {
+          const fields = req.query.fields.split(',').join(' ')
+          queries.fields = fields
+        }
+
+        const allCandidate = await getAllCandidateByService(filters, queries);
       
 
         res.status(200).json({
@@ -26,7 +52,7 @@ exports.getJobById = async (req, res, next) => {
         const jobs = await getCandidateByIdService(id);
         if(!jobs) {
             return res.status(400).json({
-                stauts: "fail",
+                status: "fail",
                 error: "Could not finds a Job with this id"
               })
         }

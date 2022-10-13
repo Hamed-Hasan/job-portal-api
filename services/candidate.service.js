@@ -2,13 +2,18 @@ const Jobs = require('../models/jobs');
 const Candidate = require('../models/candidate');
 
 
-exports.getAllCandidateByService = async (req, res, next) => {
-    const allCandidate = await Candidate.find({});
-    return allCandidate
+exports.getAllCandidateByService = async (filters,queries) => {
+    const jobs = await Candidate.find(filters)
+    .skip(queries.skip)
+    .limit(queries.limit)
+    .sort(queries.sortBy)
+    .select(queries.fields)
+    .populate("applyFor.id")
+    return jobs;
 }
 
 exports.getCandidateByIdService = async (id) => {
-    const jobs = await Jobs.findOne({_id: id});
+    const jobs = await Jobs.findOne({_id: id}).populate("hiringManager.id");
     return jobs;
 }
 
