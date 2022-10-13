@@ -1,4 +1,4 @@
-const { createJobsService } = require("../services/jobs.service")
+const { createJobsService, getJobsService } = require("../services/jobs.service")
 
 exports.createJob = async (req, res, next) => {
 
@@ -20,7 +20,7 @@ exports.createJob = async (req, res, next) => {
 exports.getJob = async (req, res, next) => {
 
     try {
-        const jobs = await createJobsService()
+        const jobs = await getJobsService()
         res.status(200).json({
             status: 'success',
             message: 'Job getting successfully',
