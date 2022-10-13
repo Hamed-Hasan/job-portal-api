@@ -34,3 +34,26 @@ exports.getJob = async (req, res, next) => {
           })
     }
 }
+exports.getJobById = async (req, res, next) => {
+    const {id} = req.params;
+    try {
+        const jobs = await getJobsService(id)
+        if(!jobs) {
+            res.status(400).json({
+                status:"fail",
+                message: "Could not finds a Job with this id"
+            })
+        }
+        res.status(200).json({
+            status: 'success',
+            message: 'Job getting successfully',
+            data: jobs
+        })
+    } catch (error) {
+        res.status(400).json({
+            status:"fail",
+            message: "Data is not getting",
+            error : error.message
+          })
+    }
+}
