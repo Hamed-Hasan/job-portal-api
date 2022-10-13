@@ -1,6 +1,25 @@
-const { applyJob, getCandidateByIdService } = require("../services/candidate.service")
+const { applyJob, getCandidateByIdService, getAllCandidateByService } = require("../services/candidate.service")
 
 
+exports.getJobsCandidate = async (req, res, next) => {
+
+    try {
+        const allCandidate = await getAllCandidateByService();
+      
+
+        res.status(200).json({
+            status: "success",
+            massage: "successfully get data for all jobs",
+            data: allCandidate
+          })
+    } catch (error) {
+        res.status(400).json({
+            status:"fail",
+            message: " Data is not getting",
+            error : error.message
+          })
+    }
+}
 exports.getJobById = async (req, res, next) => {
     const {id} = req.params;
     try {
