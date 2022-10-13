@@ -9,9 +9,11 @@ app.use(cors());
 
 // routes
 const jobRoute = require('./routes/jobs.route');
+const managerRoute = require('./routes/hiringManager.route');
 
 // route calling
 app.use('/', jobRoute)
+app.use('/', managerRoute)
 
 
 app.get("/", (req, res) => {

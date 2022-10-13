@@ -1,6 +1,6 @@
 const HiringManager = require('../models/HiringManager');
 
-exports.HiringManager = async (data) => {
+exports.HiringManagerService = async (data) => {
     const manager = await HiringManager.create(data)
     return manager
 }
