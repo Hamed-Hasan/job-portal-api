@@ -62,12 +62,12 @@ exports.updateJob = async (req, res, next) => {
     const {id} = req.params;
     try {
         const jobs = await updateJobsService(id, req.body)
-        // if(!jobs) {
-        //     res.status(400).json({
-        //         status:"fail",
-        //         message: "Could not finds a Job with this id"
-        //     })
-        // }
+        if(!jobs.modifiedCount) {
+            res.status(400).json({
+                status:"fail",
+                message: "Could not finds a Job with this id"
+            })
+        }
         res.status(200).json({
             status: 'success',
             message: 'Job updating successfully',
