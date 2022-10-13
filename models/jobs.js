@@ -32,21 +32,21 @@ const jobSchema = mongoose.Schema({
         type: Date,
         default: Date.now  
     },
-    lastApplicationDate:{
-        type: Date, 
-        require:true,
-    },
+    // lastApplicationDate:{
+    //     type: Date, 
+    //     require:true,
+    // },
     vacancy:{
         type:String,
         require:true,
     },
     hiringManager:{
         name:String,
-        id:{
-            type: ObjectId,
-            ref: "HiringManager",
-            require: true,
-        }
+        // id:{
+        //     type: ObjectId,
+        //     ref: "HiringManager",
+        //     require: true,
+        // }
     },
 });
 
