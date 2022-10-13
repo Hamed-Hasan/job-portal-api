@@ -8,3 +8,7 @@ exports.getJobsService = async () => {
     const jobs = await Jobs.find({});
     return jobs
 }
+exports.getJobsServiceById = async (jobId) => {
+    const jobs = await Jobs.findOne({_id: jobId});
+    return jobs
+}
