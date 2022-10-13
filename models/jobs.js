@@ -42,11 +42,11 @@ const jobSchema = mongoose.Schema({
     },
     hiringManager:{
         name:String,
-        // id:{
-        //     type: ObjectId,
-        //     ref: "HiringManager",
-        //     require: true,
-        // }
+        id:{
+            type: ObjectId,
+            ref: "HiringManager",
+            require: true,
+        }
     },
 });
 
