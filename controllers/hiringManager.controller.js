@@ -3,7 +3,7 @@
 exports.createHiringManager = async (req, res, next) => {
 
     try {
-        const jobs = await createJobsService(req.body)
+        const jobs = await (req.body)
         res.status(200).json({
             status: 'success',
             message: 'manager created successfully',
