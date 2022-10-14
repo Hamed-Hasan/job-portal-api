@@ -18,3 +18,26 @@ exports.getCandidate = async (req, res, next) => {
           })
     }
 }
+exports.getCandidateId = async (req, res, next) => {
+    const {id} = req.params;
+    try {
+        const candidate = await getCandidateService(id)
+        if(!candidate){
+            return res.status(400).json({
+                stauts:"fail",
+                error : "Could not finds a candidate with this id"
+              })
+          }
+        res.status(200).json({
+            status: 'success',
+            massage: "successfully get data for all Candidate",
+            data: candidate
+        })
+    } catch (error) {
+        res.status(400).json({
+            status:"fail",
+            message: "Data is not getting",
+            error : error.message
+          })
+    }
+}
