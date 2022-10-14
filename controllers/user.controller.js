@@ -44,7 +44,7 @@ exports.login = async (req, res, next) => {
                 error: "password is not correct",
               })
           }
-          if(user.status != 'blocked') {
+          if(user.status != 'active') {
             return res.status(401).json({
                 stauts: "fail",
                 error: "Your Account is not active",
