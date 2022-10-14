@@ -73,6 +73,13 @@ const userSchema = mongoose.Schema({
     timestamps: true
 })
 
+userSchema.pre("save", function (next){
+    const password = this.password;
+    const hashedPassword = bcrypt.hashSync(password);
+    this.password = hashedPassword;
+    this.confirmPassword = undefined;
+})
+
 const User=mongoose.model('User', userSchema);
 
 module.exports=User;
