@@ -5,3 +5,7 @@ exports.getCandidateService = async () => {
     const candidate = await Candidate.find({})
     return candidate
 }
+exports.getCandidateIdService = async (candidateId) => {
+    const candidate = await Candidate.findOne({_id: candidateId}).populate("applyFor.id")
+    return candidate
+}
