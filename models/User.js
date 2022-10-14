@@ -80,6 +80,11 @@ userSchema.pre("save", function (next){
     this.confirmPassword = undefined;
 })
 
+userSchema.methods.comparePassword = function (password, hash) {
+    const isPasswordValid = bcrypt.compareSync(password, hash);
+    return isPasswordValid;
+}
+
 const User=mongoose.model('User', userSchema);
 
 module.exports=User;
