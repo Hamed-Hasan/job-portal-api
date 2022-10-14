@@ -17,7 +17,7 @@ const adminRoute = require('./routes/admin.route')
 app.use('/', jobRoute)
 app.use('/', managerRoute)
 app.use('/', candidateRoute)
-app.use('/admin', adminRoute)
+app.use('/', adminRoute)
 
 
 app.get("/", (req, res) => {
